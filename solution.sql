@@ -44,3 +44,20 @@ SELECT * FROM produtos ORDER BY preco DESC LIMIT 1;
 
 -- Busque o produto com o segundo menor preço. Para este item, procure por sql offset.
 SELECT * FROM produtos ORDER BY preco DESC LIMIT 1 OFFSET 1;
+
+-- -----------------DESAFIOS----------------
+
+-- Busque todos os produtos com Televisão no nome. Para fazer isso, procure por sql like operator;
+SELECT * FROM produtos WHERE nome LIKE '%Televisão%';
+
+-- Busque todos os produtos com preço menor que R$1000,00. Para fazer isso, procure por sql comparison operators;
+SELECT * FROM produtos WHERE preco < 1000*100;
+
+-- Busque todos os produtos com Celular no nome e preço menor que R$2000,00. Para isso, utilize o operador like do item anterior e procure por sql logical operators;
+SELECT * FROM produtos WHERE nome LIKE '%Celular%' AND preco < 2000 * 100;
+
+-- (Desafio²) Busque todos os clientes que não fizeram uma compra. Para isso, procure por sql not in e sql subquery.
+SELECT * FROM clientes WHERE id NOT IN (SELECT id_cliente FROM compras);
+
+-- (Desafio²) Busque todos os produtos comprados por Benício Freire Sampaio. Para isso, procure por sql in e sql subquery;
+SELECT * FROM produtos WHERE id IN (SELECT id_produto FROM compras WHERE id_cliente = (SELECT id FROM clientes WHERE nome = 'Benício Freire Sampaio'));
